@@ -28,3 +28,35 @@ exports.get = async (req, res, next) => {
     res.redirect("/login");
   
 };
+
+
+exports.editUserAvatar = async (req, res, next) => {
+  const receiveForm = formidable.IncomingForm();
+  await receiveForm.parse(req, (err, fields, files) => {
+    if (err || files.avatarImageInput.type !== "image/jpeg") {
+      res.status(204).send("error!");
+    } else {
+      accountModel
+        .saveAvatar(files)
+        .then(imageName => {
+          let toChangeAvatarUser = {
+            id: fields.IdToChangeAvatar,
+            avatar_image: imageName,
+          };
+          return toChangeAvatarUser;
+        })
+        .then(toChangeAvatarUser => {
+          console.log(toChangeAvatarUser.avatar_image);
+          console.log(toChangeAvatarUser.id);
+          accountModel
+          .editAvatar(toChangeAvatarUser).then(result => {
+            if (result === true) {
+              res.status(202).redirect("/account");
+            } else {
+              res.send(204).end();
+            }
+          });
+        });
+    }
+  });
+};
