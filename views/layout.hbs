@@ -26,6 +26,14 @@
 	<script src="https://kit.fontawesome.com/21d91c27a8.js" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 	<script src="js/jquery-3.2.1.min.js"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-GF6ZFLQ5WE"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'G-GF6ZFLQ5WE');
+	</script>
 </head>
 
 <body>
@@ -33,7 +41,7 @@
 	<!-- Start Main Top -->
 	<div class="loader">
 		<div class="loader-icon"></div>
-		<p>Đang thêm...</p>
+		<p>Đang tải...</p>
 	</div>
 	<header class="main-header">
 		<!-- Start Navigation -->
@@ -45,7 +53,7 @@
 						aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
 						<i class="fa fa-bars"></i>
 					</button>
-					<a class="navbar-brand logo-brand layout-logo" href="/"><img style="width:50px; margin-right: 10px"
+					<a class="navbar-brand logo-brand" href="/"><img style="width:50px; margin-right: 10px"
 							src="images/open-book.png" class="logo" alt="">
 						<p>FunRetro-NMCNPM</p>
 					</a>
@@ -53,35 +61,24 @@
 				<!-- End Header Navigation -->
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="navbar-menu">
-					<ul style="width: 100vw" class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+					<ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
 						<li class="nav-item active"><a class="nav-link" href="/">Trang chủ</a></li>
-						<li class="nav-item "><a class="nav-link" href="/board">Board</a></li>
+						<li class="nav-item"><a class="nav-link" href="/service">Dịch vụ</a></li>
 						<li class="dropdown">
 							{{#if userToShow}}
-								{{#if userToShow.super_admin}}
-									<a href="/account" class="nav-link dropdown-toggle arrow" data-toggle="dropdown"
-										id="userToShow-name">{{userToShow.name}}</a>
-									<ul class="dropdown-menu">
-										<li><a href="/account">Thông tin tài khoản</a></li>
-										<li><a href="/changepassword">Đổi mật khẩu</a></li>
-										<li><a href="/changeAccountInfo">Cập nhật thông tin</a></li>
-										<li><a href="/register">Đăng kí Admin</a></li>
-										<li><a href="/logout">Đăng xuất</a></li>
-									</ul>
-								{{else}}
-									<a href="/account" class="nav-link dropdown-toggle arrow" data-toggle="dropdown"
-										id="userToShow-name">{{userToShow.name}}</a>
-									<ul class="dropdown-menu">
-										<li><a href="/account">Thông tin tài khoản</a></li>
-										<li><a href="/changepassword">Đổi mật khẩu</a></li>
-										<li><a href="/changeAccountInfo">Cập nhật thông tin</a></li>
-										<li><a href="/logout">Đăng xuất</a></li>
-									</ul>
-								{{/if}}
+								<a href="/account" class="nav-link dropdown-toggle arrow" data-toggle="dropdown"
+									id="userToShow-name">{{userToShow.name}}</a>
+								<ul class="dropdown-menu">
+									<li><a href="/account">Thông tin tài khoản</a></li>
+									<li><a href="/changepassword">Đổi mật khẩu</a></li>
+									<li><a href="/changeAccountInfo">Cập nhật thông tin</a></li>
+									<li><a href="/logout">Đăng xuất</a></li>
+								</ul>
 							{{else}}
-								<a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Đăng
+								<a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Đăng kí/Đăng
 									nhập</a>
 								<ul class="dropdown-menu">
+									<li><a href="/register">Đăng kí</a></li>
 									<li><a href="/login">Đăng nhập</a></li>
 								</ul>
 							{{/if}}
@@ -89,11 +86,9 @@
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->
-				<!-- Start Atribute Navigation -->
+				
 				<!-- End Atribute Navigation -->
 			</div>
-			<!-- Start Side Menu -->
-			<!-- End Side Menu -->
 		</nav>
 		<!-- End Navigation -->
 	</header>
@@ -111,7 +106,7 @@
 	<!-- End Top Search -->
 	<!-- Start Slider -->
 	<!-- Start Footer  -->
-	<div style="margin:20px; min-height:1000px">
+	<div>
 		{{{body}}}
 	</div>
 	<footer>
@@ -121,27 +116,16 @@
 					<div class="col-lg-4 col-md-12 col-sm-12">
 						<div class="footer-widget">
 							<h4>About BookLand</h4>
-							<p>Dự án được tạo ra bởi 3 sinh viên Hòa - An - Triều, trường đại học Khoa học Tự nhiên,
-								Tp.Hồ Chí Minh. Nhằm mang đến cộng đồng một địa điểm review, xem và mua sách một cách dễ
-								dàng thông qua trang web của chúng tôi. Chúng tôi rất hân hạnh được phục vụ quý khách
-								trên con đường phát triển của the BookLand.</p>
+							<p>Dự án được tạo ra bởi 3 sinh viên Hòa - An - Triều, trường đại học Khoa học Tự nhiên, Tp.Hồ Chí Minh. Dự án nhằm mang đến cộng đồng một địa điểm review, xem và mua sách một cách dễ dàng. Phục vụ khách hàng tốt nhất là tiêu chí hàng đầu của shop chúng tôi.</p>
 							</p>
 							<ul>
-								<li><a href="https://www.facebook.com/"><i class="fab fa-facebook"
-											aria-hidden="true"></i></a></li>
-								<li><a href="bookland.hcmus@gmail.com"><i class="fab fa-google-plus"
-											aria-hidden="true"></i></a></li>
-								<li><a href="https://twitter.com/?lang=vi"><i class="fab fa-twitter"
-											aria-hidden="true"></i></a></li>
-								<li><a href="https://www.linkedin.com/feed/"><i class="fab fa-linkedin"
-											aria-hidden="true"></i></a></li>
-								<li><a
-										href="https://wiki.matbao.net/rss-la-gi-cach-cai-dat-su-dung-va-lay-rss-feeds-cho-wordpress/"><i
-											class="fa fa-rss" aria-hidden="true"></i></a></li>
-								<li><a href="https://www.pinterest.com/"><i class="fab fa-pinterest-p"
-											aria-hidden="true"></i></a></li>
-								<li><a href="https://web.whatsapp.com/"><i class="fab fa-whatsapp"
-											aria-hidden="true"></i></a></li>
+								<li><a href="https://www.facebook.com/"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
+								<li><a href="bookland.hcmus@gmail.com"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
+								<li><a href="https://twitter.com/?lang=vi"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+								<li><a href="https://www.linkedin.com/feed/"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+								<li><a href="https://wiki.matbao.net/rss-la-gi-cach-cai-dat-su-dung-va-lay-rss-feeds-cho-wordpress/"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
+								<li><a href="https://www.pinterest.com/"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
+								<li><a href="https://web.whatsapp.com/"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
 							</ul>
 						</div>
 					</div>
@@ -164,12 +148,10 @@
 							<ul>
 								<li>
 									<p><i class="fas fa-map-marker-alt"></i>Địa chỉ: Ký túc xá khu B<br>Cơ sở Dĩ An
-										<br> Bình Dương
-									</p>
+										<br> Bình Dương </p>
 								</li>
 								<li>
-									<p><i class="fas fa-phone-square"></i>SĐT: <a href="tel:0906947217">0906947217</a>
-									</p>
+									<p><i class="fas fa-phone-square"></i>SĐT: <a href="tel:0906947217">0906947217</a></p>
 								</li>
 								<li>
 									<p><i class="fas fa-envelope"></i>Email: <a
@@ -185,8 +167,8 @@
 	<!-- End Footer  -->
 	<!-- Start copyright  -->
 	<div class="footer-copyright">
-		<p class="footer-company">All Rights Reserved. &copy; 2018 <a href="#">TheBookShop</a> Design By :
-			<a href="https://html.design/">html.design/</a>
+		<p class="footer-company">All Rights Reserved. &copy; 2018 <a href="#">ThewayShop</a> Design By :
+			<a href="https://html.design/">html design</a>
 		</p>
 	</div>
 	<!-- End copyright  -->
@@ -208,12 +190,6 @@
 	<script src="js/custom.js"></script>
 	<script id="user-info" type="text/x-handlebars-template">
 		<p>{{userToShow._id}}</p>
-	</script>
-	<script id="user-info2" type="text/x-handlebars-template">
-		<p id="user-name" style="display: none;">{{userToShow.name}}</p>
-		<p id="user-id" style="display: none;">{{userToShow._id}}</p>
-		<p id="user-email" style="display: none;">{{userToShow.email}}</p>
-		
 	</script>
 </body>
 

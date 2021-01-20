@@ -91,24 +91,12 @@ exports.checkValidPassword = async (id, plainPassword) => {
   return bcrypt.compareSync(plainPassword, foundUser.password);
 };
 
-exports.registerNewuser = async (super_admin_id, newUsername, plainNewPassword, newEmail) => {
+exports.registerNewuser = async (newUsername, plainNewPassword, newEmail) => {
   console.log(newUsername, plainNewPassword, newEmail);
-  let isExistAdmin=await accountModel.getUserById(super_admin_id);
-  if(isExistAdmin!=null && isExistAdmin!=undefined && isExistAdmin!="")
-  {
-    if(isExistAdmin.super_admin==true)
-    {
-      let res = await accountModel.addNewUser(newUsername, plainNewPassword, newEmail);
-      this.sendVerifyEmail(res);
-      return {success:true};
-    }
-    else {
-      return {success:false};
-    }
-  }
-  else{
-    return {success:false};
-  }
+  let res = await accountModel.addNewUser(newUsername, plainNewPassword, newEmail);
+  console.log(res)
+  //let newuser = await accountModel.getUserByUsername(newUsername);
+  this.sendVerifyEmail(res);
 };
 
 exports.vefifyEmail = async id => {
