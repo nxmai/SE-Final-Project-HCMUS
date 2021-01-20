@@ -3,7 +3,7 @@ const { MongoClient, connect } = require("mongodb");
 require("dotenv/config");
 const uri = process.env.DB_URI;
 // Create a new MongoClient
-const client = new MongoClient(uri);
+const client = new MongoClient(uri, {useNewUrlParser: true, useUnifiedTopology: true});
 let database;
 async function connectToDB() {
   try {
