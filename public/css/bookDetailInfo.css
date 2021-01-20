@@ -132,7 +132,7 @@ img {
 
 .add-to-cart,
 .like {
-  background: #d33b33;
+  background: #2669F5;
   padding: 0.5em 1rem;
   border: none;
   text-transform: UPPERCASE;
@@ -164,8 +164,8 @@ img {
   padding: 1.3em;
 }
 .classic-tabs .nav.tabs-primary li a.active {
-  color: #d33b33 !important;
-  border-color: #d33b33;
+  color: #2669F5 !important;
+  border-color: #2669F5;
 }
 .classic-tabs .nav li a.active {
   color: #fff;
@@ -195,7 +195,7 @@ classic-tabs .nav {
   display: flex;
 }
 a {
-  color: #d33b33;
+  color: #2669F5;
   text-decoration: none;
   cursor: pointer;
   -webkit-transition: all 0.2s ease-in-out;
