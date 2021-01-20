@@ -12,7 +12,7 @@
                     <!-- Avatar -->
                     <img id="previewImg" src="{{avatar_image}}" alt="" />
                     <div style="cursor: pointer;" class="file btn btn-lg btn-primary">
-                        Đổi ảnh
+                        Change avatar
                         <input style="cursor: pointer; height: 100%" onchange="previewImage(event)" type="file"
                             name="avatarImageInput" />
                         <input type="hidden" name="IdToChangeAvatar" value="{{id}}" />
@@ -32,7 +32,7 @@
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                                aria-controls="home" aria-selected="true">Thông tin tài khoản</a>
+                                aria-controls="home" aria-selected="true">Profile</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
@@ -40,13 +40,13 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                                aria-controls="profile" aria-selected="false">Phiên bản trả phí</a>
+                                aria-controls="profile" aria-selected="false">Paid version</a>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="col-md-2">
-                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Lưu avatar"  id="change-avatar" />
+                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Save avatar"  id="change-avatar" />
                 <input  type="button" onclick="LockAccount()" id="btnLockAccount" value="Khóa tài khoản" name="btnLockAccount" class="profile-lock-btn" ></input>
                 <input  type="button" onclick="UnlockAccount()" id="btnUnlockAccount" value="Ngừng khóa tài khoản" name="btnLockAccount" class="profile-unlock-btn" ></input>
 
@@ -88,7 +88,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Địa chỉ</label>
+                                <label>Address</label>
                             </div>
                             <div class="col-md-6">
                                 <p>{{address}}, {{address_district}}, {{address_city}}</p>
@@ -96,7 +96,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Vai trò</label>
+                                <label>Type Account</label>
                             </div>
                             <p id="account-role">{{userToShow.super_admin}}</p>
                             <div class="col-md-6" id='user-role'>
@@ -107,55 +107,55 @@
                                         <p>Admin</p>
                                     {{/if}}
                                 {{else}}
-                                    <p>Người dùng</p>
+                                    <p>User</p>
                                 {{/if}}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Trạng thái</label>
+                                <label>Status</label>
                             </div>
                             
                             <div class="col-md-6">
                                 {{#if isVerified}}
-                                <p>Đã xác thực</p>
+                                <p>Authenticated</p>
                                 {{else}}
-                                <p>Chưa xác thực</p>
+                                <p>Unauthenticated</p>
                                 {{/if}}
                             </div>
                         </div>
                          <div class="row">
                             <div class="col-md-6">
-                                <label>Tình trạng</label>
+                                <label>Is Locked</label>
                             </div>
                             {{#if isLocked}}
                             <div class="col-md-6" id="div-is-locked">
-                                <p>Bị khóa</p>
+                                <p>True</p>
                             </div>
                             {{else}}
                             <div class="col-md-6" id="div-is-locked">
-                                <p >Bình thường</p>
+                                <p >False</p>
                             </div>
                             {{/if}}
 
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Số điện thoại</label>
+                                <label>Phone number</label>
                             </div>
                             <div class="col-md-6">
                                 <p>090 694 7217</p>
                             </div>
                         </div>
 
-                        <div class="row">
+                        {{!-- <div class="row">
                             <div class="col-md-6">
                                 <label>Nghề nghiệp</label>
                             </div>
                             <div class="col-md-6">
                                 <p>Nhân viên văn phòng</p>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <div class="row">

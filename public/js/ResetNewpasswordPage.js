@@ -33,14 +33,14 @@ function validatePassword()
     {
         OKpassword = false;
         updateStatusResetButton();
-        notifyElement.innerHTML = "&#10005 Mật khẩu không được để trống";
+        notifyElement.innerHTML = "&#10005 Password can not be empty.";
         notifyElement.style = "color:red "; 
     }
     else if(newPassword.length < 8)
     {
         OKpassword = false;
         updateStatusResetButton();
-        notifyElement.innerHTML = "&#10005 Mật khẩu phải dài ít nhất 8 kí tự !";
+        notifyElement.innerHTML = "&#10005 The password must be at least 8 characters long!";
         notifyElement.style = "color:red "; 
     }
     else{
@@ -66,7 +66,7 @@ function validateRepassword()
     }
     else
     {
-        notifyElement.innerHTML = "&#10005 Phải trùng với mật khẩu";
+        notifyElement.innerHTML = "&#10005 this must be same with the password.";
         notifyElement.style = "color:red "; 
         OKrepassword = false;
         updateStatusResetButton(); 
@@ -102,7 +102,7 @@ function changePassword()
                  if(result)
                  {
                      
-                     notifyElement.innerHTML = "Đã đổi mật khẩu của bạn sẽ, redirect bạn lại trang chủ";
+                     notifyElement.innerHTML = "Password is changed, redirecting to homepage.";
  
                 //     setTimeout(function () {
                 //     window.location.replace("/login");
@@ -112,7 +112,7 @@ function changePassword()
                  else{
                     notifyElement = document.getElementById("repasswordcheck-notify"); 
                     notifyElement.style = "color: red";
-                    notifyElement.innerHTML = "Mật khẩu cũ sai!";
+                    notifyElement.innerHTML = "Wrong old password!";
                  }
              }
             }
