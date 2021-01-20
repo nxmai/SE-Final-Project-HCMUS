@@ -1,21 +1,23 @@
+const flash = require('connect-flash');
+const passport = require("passport");
+const localstrategy = require("passport-local").Strategy;
+const accountModel = require("../../models/accountModel");
+const accoutServices = require("../../services/accountServices") 
 
-
-    if(lockedCheck)
-    {
-      return done(null,false, {message: 'Tài khoản của bạn đã bị khoá, liên hệ chúng tôi!'})
-    }
-    return done(null,existUser); 
+passport.use(new localstrategy (
+  async function(username,password,done)
+ {
+    
  }
 ));
  
  passport.serializeUser(function(user,done){
-   done(null,user._id); 
+   
  });
  
  passport.deserializeUser(async function(id,done) 
  {
-   const user = await accountModel.getUserById(id); 
-   done(null,user); 
+   
  });
 
  module.exports = passport; 
