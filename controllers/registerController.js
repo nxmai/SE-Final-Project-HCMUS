@@ -7,20 +7,11 @@ exports.renderRegisterPage = (req, res, next) => {
   {
     const id=req.user._id;
     const userToShow=accountModel.getUserById(id);
-    res.render("./login-register/register", {userToShow:userToShow});
   }
-  else 
-  {
-    res.redirect("./login");
-  }
+  res.render("./login-register/register", {userToShow:userToShow});
 };
 
 exports.registerNewUser = async (req, res, next) => {
-  if(req.user)
-  {
-    const adminID=req.user._id;
-    const registered=await accountServices.registerNewuser(req.user._id,req.body.username, req.body.password, req.body.email);
-    console.log(registered.success);
-  }
+  await accountServices.registerNewuser(req.body.username, req.body.password, req.body.email);
   res.redirect("/login");
 };

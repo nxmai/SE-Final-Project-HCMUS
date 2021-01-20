@@ -9,9 +9,9 @@ async function connectToDB() {
   try {
     await client.connect();
     // Establish and verify connection
-    await client.db("BooksDB").command({ ping: 1 });
+    await client.db("FunRetro").command({ ping: 1 });
     console.log("connected to DB!!");
-    database = client.db("BooksDB");
+    database = client.db("FunRetro");
   } catch {
     console.log("can't connect");
   }
