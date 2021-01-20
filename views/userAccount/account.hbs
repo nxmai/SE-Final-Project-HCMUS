@@ -1,0 +1,222 @@
+<link href="css/account.css" rel="stylesheet">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container emp-profile">
+    <form method="POST" action="/account" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    <!-- Avatar -->
+                    <img id="previewImg" src="{{avatar_image}}" alt="" />
+                    <div style="cursor: pointer;" class="file btn btn-lg btn-primary">
+                        Đổi ảnh
+                        <input style="cursor: pointer; height: 100%" onchange="previewImage(event)" type="file"
+                            name="avatarImageInput" />
+                        <input type="hidden" name="IdToChangeAvatar" value="{{id}}" />
+                    </div>
+                </div>
+            </div>
+            <p id="is-verified" style="display: none;">{{isVerified}}</p>
+            <p id="is-locked" style="display: none;">{{isLocked}}</p>
+            <div class="col-md-6">
+                <div class="profile-head">
+                    <h1>
+                        {{name}}
+                    </h1>
+                    <h4>
+                        {{email}}
+                    </h4>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                aria-controls="home" aria-selected="true">Thông tin tài khoản</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                                aria-controls="profile" aria-selected="false">Giỏ hàng</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                                aria-controls="profile" aria-selected="false">Sản phẩm yêu thích</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Lưu avatar"  id="change-avatar" />
+                <input  type="button" onclick="LockAccount()" id="btnLockAccount" value="Khóa tài khoản" name="btnLockAccount" class="profile-lock-btn" ></input>
+                <input  type="button" onclick="UnlockAccount()" id="btnUnlockAccount" value="Ngừng khóa tài khoản" name="btnLockAccount" class="profile-unlock-btn" ></input>
+
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-work">
+                    <p>Tài khoản</p>
+                    <a href="">Địa chỉ nhận hàng</a><br />
+                    <a href="">Phương thức thanh toán</a><br />
+                    <a href="">Mã giảm giá</a><br />
+                    <p>Đơn hàng</p>
+                    <a href="">Đơn hàng đã hủy</a><br />
+                    <a href="">Đơn hàng đổi trả</a><br />
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>User Id</label>
+                            </div>
+                            <div class="col-md-6" >
+                                <p id="account-id">{{id}}</p>
+                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Name</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{name}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Email</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{email}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Địa chỉ</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{address}}, {{address_district}}, {{address_city}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Vai trò</label>
+                            </div>
+                            <p id="account-role">{{userToShow.super_admin}}</p>
+                            <div class="col-md-6" id='user-role'>
+                                {{#if role}}
+                                    {{#if super_admin}}
+                                        <p>Super Admin</p>
+                                    {{else}}
+                                        <p>Admin</p>
+                                    {{/if}}
+                                {{else}}
+                                    <p>Người dùng</p>
+                                {{/if}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Trạng thái</label>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                {{#if isVerified}}
+                                <p>Đã xác thực</p>
+                                {{else}}
+                                <p>Chưa xác thực</p>
+                                {{/if}}
+                            </div>
+                        </div>
+                         <div class="row">
+                            <div class="col-md-6">
+                                <label>Tình trạng</label>
+                            </div>
+                            {{#if isLocked}}
+                            <div class="col-md-6" id="div-is-locked">
+                                <p>Bị khóa</p>
+                            </div>
+                            {{else}}
+                            <div class="col-md-6" id="div-is-locked">
+                                <p >Bình thường</p>
+                            </div>
+                            {{/if}}
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Số điện thoại</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>090 694 7217</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Nghề nghiệp</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Nhân viên văn phòng</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Experience</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Expert</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Hourly Rate</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>10$/hr</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Total Projects</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>230</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>English Level</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Expert</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Availability</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>6 months</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>Your Bio</label><br />
+                                <p>Your detail description</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="js/previewImage.js"></script>
+<script src="js/account.js"></script>
