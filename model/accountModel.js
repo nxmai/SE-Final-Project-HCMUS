@@ -62,3 +62,141 @@ exports.addNewUser = async function (newUsername, plainNewPassword, newEmail) {
   });
   return newInserted.insertedId;
 };
+
+// toogle verify (to true)
+
+exports.changeVerifyStatus = async (id, newVerifyStatus) => {
+  const adminAccountCollection = await db().collection("adminAccount");
+  await adminAccountCollection.updateOne({ _id: ObjectID(id) }, { $set: { isVerified: newVerifyStatus } });
+};
+
+exports.isExistsUsername = async inputUsername => {
+  const adminAccountCollection = await db().collection("adminAccount");
+  let userDocument = await adminAccountCollection.findOne({ name: inputUsername });
+  if (userDocument) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+exports.isExistsEmail = async inputEmail => {
+  const adminAccountCollection = await db().collection("adminAccount");
+  const adminAccountDocument = await adminAccountCollection.findOne({ email: inputEmail });
+  if(adminAccountDocument)
+  {
+    return true; 
+  }
+  else{
+    return false;
+  }
+  
+}
+
+exports.changePassword = async (userid, password) =>
+{
+  const userpasswordCollection = await db().collection("User-hashPassword");
+
+   await bcrypt.hash(password, 3, (err,hashResult) => 
+   {
+     if (err) {
+       console.log(`Hash error: ${err}}`);
+       return false;
+     }
+     console.log(hashResult);
+     userpasswordCollection.updateOne({_id: ObjectID(userid)}, 
+                                     {$set: {password: hashResult}} );
+   });
+  // await userpasswordCollection.updateOne({_id: ObjectID(userid)} , {$set : {password : password}});
+
+  // await userCollection.updateOne({ _id: ObjectID(id) }, { $set: { isVerified: newVerifyStatus } });
+  return true;
+
+  
+}
+
+exports.editAvatar = async userObject => {
+  const userCollection = await db().collection("adminAccount");
+  const id = userObject.id;
+  let success = false;
+
+  let existsUser = await userCollection.findOne({ _id: ObjectID(id) });
+  if (existsUser === null || existsUser === undefined) {
+    console.log(`Cant find user with id ${id}`);
+    success = false;
+  } else {
+    userCollection.updateOne(
+      { _id: ObjectID(id) },
+      {
+        $set: {
+          avatar_image: userObject.avatar_image,
+        },
+      }
+    );
+    success = true;
+  }
+  return success;
+};
+
+exports.saveAvatar = async file => {
+  const oldPath = file.avatarImageInput.path;
+  let imagelink;
+  await cloudinary.uploader.upload(oldPath, (err, result) => {
+    if (err) {
+      imagelink = null;
+    } else {
+      imagelink = result.url;
+    }
+  });
+  return imagelink;
+};
+
+
+exports.changePassword = async (userid, password) =>
+{
+  const userpasswordCollection = await db().collection("User-hashPassword");
+
+   await bcrypt.hash(password, 3, (err,hashResult) => 
+   {
+     if (err) {
+       console.log(`Hash error: ${err}}`);
+       return false;
+     }
+     console.log(hashResult);
+     userpasswordCollection.updateOne({_id: ObjectID(userid)}, 
+                                     {$set: {password: hashResult}} );
+   });
+  // await userpasswordCollection.updateOne({_id: ObjectID(userid)} , {$set : {password : password}});
+
+  // await userCollection.updateOne({ _id: ObjectID(id) }, { $set: { isVerified: newVerifyStatus } });
+  return true;
+
+  
+}
+
+exports.changeAccountInfo = async accountObject => 
+{
+  const userCollection = await db().collection("adminAccount");
+  let success = true;
+  let existsUser = await userCollection.findOne({_id: ObjectID(accountObject.id)}); 
+  if(existsUser == null || existsUser == undefined)
+  {
+    console.log(`Can't find book with ID ${accountObject.id}`);
+    success = false;
+  }
+  else{
+    userCollection.updateOne({_id: ObjectID(accountObject.id)}, 
+                           {$set: {
+                             email : accountObject.email,
+                             age : accountObject.age,
+                             email : accountObject.email,
+                             email : accountObject.email,
+                             address_city : accountObject.address_city,
+                             address_district : accountObject.address_district,
+                             address : accountObject.address,
+                             avatar_image: accountObject.avatar_image
+                           }});
+    success = true;
+  }
+  return success; 
+} 
