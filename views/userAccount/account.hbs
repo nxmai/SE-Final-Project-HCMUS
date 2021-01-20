@@ -101,23 +101,7 @@
                                 <p>{{address}}, {{address_district}}, {{address_city}}</p>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Vai trò</label>
-                            </div>
-                            <p id="account-role">{{userToShow.super_admin}}</p>
-                            <div class="col-md-6" id='user-role'>
-                                {{#if role}}
-                                    {{#if super_admin}}
-                                        <p>Super Admin</p>
-                                    {{else}}
-                                        <p>Admin</p>
-                                    {{/if}}
-                                {{else}}
-                                    <p>Người dùng</p>
-                                {{/if}}
-                            </div>
-                        </div>
+                        
                         <div class="row">
                             <div class="col-md-6">
                                 <label>Trạng thái</label>
@@ -141,7 +125,7 @@
                             </div>
                             {{else}}
                             <div class="col-md-6" id="div-is-locked">
-                                <p >Bình thường</p>
+                                <p>Bình thường</p>
                             </div>
                             {{/if}}
 
