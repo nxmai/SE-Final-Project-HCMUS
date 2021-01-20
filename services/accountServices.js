@@ -59,7 +59,7 @@ exports.sendVerifyEmail = async userid => {
         from: process.env.MAIL_NAME,
         to: emailToSend,
         subject: "[No reply] Xác nhận tài khoản BookLand của bạn",
-        html: `<p> Xin hãy xác nhận tài khoản: ${usernameToSend} của bạn qua đường dẫn localhost:3000/verify/${userid}<p>`,
+        html: `<p> Xin hãy xác nhận tài khoản: ${usernameToSend} của bạn qua đường dẫn https://funretro-cnpm.herokuapp.com/verify/${userid}<p>`,
     };
 
     //console.log("Inside mail serviceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
