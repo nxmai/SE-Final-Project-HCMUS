@@ -148,7 +148,7 @@ function resetNewPassword()
                         if(result)
                         {
                             const notifyElement = document.getElementById("repasswordcheck-notify"); 
-                            notifyElement.innerHTML = "Đã đổi mật khẩu của bạn sẽ, redirect bạn lại trang đăng nhập"
+                            notifyElement.innerHTML = "Password is changed, redirecting to Login page."
 
                             setTimeout(function () {
                                 window.location.replace("/login");
