@@ -14,6 +14,7 @@ exports.get = async (req, res, next) => {
       name: user.name,
       email: user.email,
       role:user.role,
+      age:user.age,
       address:user.address,
       address_district:user.address_district,
       address_city:user.address_city,

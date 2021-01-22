@@ -96,24 +96,15 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Type Account</label>
+                                <label>Age</label>
                             </div>
-                            <p id="account-role">{{userToShow.super_admin}}</p>
-                            <div class="col-md-6" id='user-role'>
-                                {{#if role}}
-                                    {{#if super_admin}}
-                                        <p>Super Admin</p>
-                                    {{else}}
-                                        <p>Admin</p>
-                                    {{/if}}
-                                {{else}}
-                                    <p>User</p>
-                                {{/if}}
+                            <div class="col-md-6" >
+                                {{age}}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Status</label>
+                                <label>isVerified</label>
                             </div>
                             
                             <div class="col-md-6">
@@ -123,21 +114,6 @@
                                 <p>Unauthenticated</p>
                                 {{/if}}
                             </div>
-                        </div>
-                         <div class="row">
-                            <div class="col-md-6">
-                                <label>Is Locked</label>
-                            </div>
-                            {{#if isLocked}}
-                            <div class="col-md-6" id="div-is-locked">
-                                <p>True</p>
-                            </div>
-                            {{else}}
-                            <div class="col-md-6" id="div-is-locked">
-                                <p >False</p>
-                            </div>
-                            {{/if}}
-
                         </div>
                         <div class="row">
                             <div class="col-md-6">
